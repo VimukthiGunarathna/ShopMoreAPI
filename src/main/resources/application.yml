@@ -1,0 +1,8 @@
+spring:
+    jpa:
+        hibernate:
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+    datasource:
+        url: "jdbc:postgresql://localhost:9090/shopmore"
+        username: postgres
+        password: gta123
