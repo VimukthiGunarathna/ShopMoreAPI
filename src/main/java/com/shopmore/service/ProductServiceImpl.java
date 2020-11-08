@@ -2,6 +2,7 @@ package com.shopmore.service;
 
 import com.shopmore.model.AllPricingRequest;
 import com.shopmore.model.Carton;
+import com.shopmore.model.PricingRequest;
 import com.shopmore.model.Product;
 import com.shopmore.repository.CartonRepository;
 import com.shopmore.repository.ProductRepository;
@@ -20,8 +21,6 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
     @Autowired
     private CartonRepository cartonRepository;
-
-    private CalculationService calculator;
 
     @Override
     public List<Product> getAllProducts() {
@@ -58,5 +57,18 @@ public class ProductServiceImpl implements ProductService {
         return response;
     }
 
+    @Override
+    public Double getPricing(PricingRequest pricingRequest) {
+        Carton carton = getCarton(pricingRequest.getProd_id());
+         double total = CalculationService.getMultipleUnitPrice(
+                 (pricingRequest.getQty_cartons()*carton.getUnits()+pricingRequest.getQty_units()),
+                 carton.getCarton_price(),
+                 carton.getUnits());
+        return total;
+    }
 
+    // Helper Methods
+    private Carton getCarton(Integer prodId){
+        return cartonRepository.findById(prodId).get();
+    }
 }

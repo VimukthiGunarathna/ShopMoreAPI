@@ -2,12 +2,11 @@ package com.shopmore.controller;
 
 import com.shopmore.model.AllPricingRequest;
 import com.shopmore.model.Carton;
+import com.shopmore.model.PricingRequest;
 import com.shopmore.model.Product;
 import com.shopmore.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,6 +32,8 @@ public class ProductController {
         return productService.getAllPricing();
     }
 
-    @GetMapping("/getPricing")
-    public Integer getPricing(){ return productService.getPricing(); }
+    @PostMapping("/getPricing")
+    public Double getPricing(@RequestBody PricingRequest pricingRequest){
+        return productService.getPricing(pricingRequest);
+    }
 }
