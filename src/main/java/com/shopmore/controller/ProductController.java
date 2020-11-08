@@ -17,6 +17,7 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    // GET CALLS
     @GetMapping("/getAllProducts")
     public List<Product> getProduct() {
         return productService.getAllProducts();
@@ -32,6 +33,7 @@ public class ProductController {
         return productService.getAllPricing();
     }
 
+    // POST CALLS
     @PostMapping("/getPricing")
     public Double getPricing(@RequestBody PricingRequest pricingRequest){
         return productService.getPricing(pricingRequest);

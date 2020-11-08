@@ -1,5 +1,8 @@
 package com.shopmore.model;
 
+/**
+ * REQUEST TYPE
+ */
 public class PricingRequest {
     private Integer prod_id;
     private Integer qty_cartons;

@@ -18,10 +18,15 @@ import java.util.stream.StreamSupport;
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
-    private ProductRepository productRepository;
+    private ProductRepository productRepository; // product table cruds
     @Autowired
-    private CartonRepository cartonRepository;
+    private CartonRepository cartonRepository; // cartons table cruds
 
+
+    /**
+     * Returns every product which is in the system
+     * @return : product list
+     */
     @Override
     public List<Product> getAllProducts() {
         return StreamSupport
@@ -29,6 +34,10 @@ public class ProductServiceImpl implements ProductService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Returns every cartons price
+     * @return : carton price list
+     */
     @Override
     public List<Carton> getAllCartonPrices() {
         return StreamSupport
@@ -36,6 +45,11 @@ public class ProductServiceImpl implements ProductService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Returns every products pricing with considering
+     * different amounts of units and discounts
+     * @return : price list
+     */
     @Override
     public List<AllPricingRequest> getAllPricing() {
         List<Product> allProducts = getAllProducts();
@@ -57,6 +71,11 @@ public class ProductServiceImpl implements ProductService {
         return response;
     }
 
+    /**
+     * Returns the total of the request products
+     * according to the quantity (unit and cartons)
+     * @return total
+     */
     @Override
     public Double getPricing(PricingRequest pricingRequest) {
         Carton carton = getCarton(pricingRequest.getProd_id());
