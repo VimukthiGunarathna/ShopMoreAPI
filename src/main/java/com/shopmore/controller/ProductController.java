@@ -1,5 +1,6 @@
 package com.shopmore.controller;
 
+import com.shopmore.model.AllPricingRequest;
 import com.shopmore.model.Carton;
 import com.shopmore.model.Product;
 import com.shopmore.service.ProductService;
@@ -26,4 +27,12 @@ public class ProductController {
     public List<Carton>getAllCartonPrice(){
         return productService.getAllCartonPrices();
     }
+
+    @GetMapping("/getAllPricing")
+    public List<AllPricingRequest>getAllPricing(){
+        return productService.getAllPricing();
+    }
+
+    @GetMapping("/getPricing")
+    public Integer getPricing(){ return productService.getPricing(); }
 }

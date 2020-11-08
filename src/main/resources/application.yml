@@ -1,7 +1,7 @@
 spring:
     jpa:
-        hibernate:
-#            ddl-auto: create-drop
+#        hibernate:
+#            ddl-auto: create
         database-platform: org.hibernate.dialect.PostgreSQLDialect
     datasource:
         url: "jdbc:postgresql://localhost:9090/shopmore"
